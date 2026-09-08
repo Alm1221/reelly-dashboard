@@ -5,6 +5,7 @@
     { "src": "reelly-dashboard.html", "use": "@vercel/static" }
   ],
   "routes": [
+    { "src": "/reelly-dashboard.html", "dest": "reelly-dashboard.html" },
     { "src": "/(.*)", "dest": "server.js" }
   ]
 }
