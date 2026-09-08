@@ -1,11 +1,11 @@
 {
   "version": 2,
   "builds": [
-    { "src": "server.js", "use": "@vercel/node" },
+    { "src": "api/server.js", "use": "@vercel/node" },
     { "src": "reelly-dashboard.html", "use": "@vercel/static" }
   ],
   "routes": [
-    { "src": "/reelly-dashboard.html", "dest": "reelly-dashboard.html" },
-    { "src": "/(.*)", "dest": "server.js" }
+    { "src": "/api/(.*)", "dest": "api/server.js" },
+    { "src": "/(.*)", "dest": "reelly-dashboard.html" }
   ]
 }
