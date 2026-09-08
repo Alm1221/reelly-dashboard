@@ -125,587 +125,128 @@
   .field label{display:block; font-size:11.5px; color:var(--ink-dim); margin-bottom:8px; text-transform:uppercase; letter-spacing:0.04em;}
   .slider-row{display:flex; align-items:center; gap:12px;}
   input[type=range]{accent-color:var(--accent); width:180px;}
-  .slider-val{font-size:20px; font-weight:700; color:var(--accent); min-width:30px;}
-  .chip-group{display:flex; gap:8px; flex-wrap:wrap;}
-  .chip{
-    border:1px solid var(--line); border-radius:8px; padding:8px 14px; font-size:12.5px;
-    cursor:pointer; color:var(--ink-dim); background:var(--bg-panel2);
-  }
-  .chip.active{border-color:var(--accent); color:var(--accent); background:rgba(212,255,43,0.06);}
 
-  .terminal{
-    font-family:'JetBrains Mono', monospace; font-size:12.5px; background:var(--bg-panel2);
-    border:1px solid var(--line); border-radius:10px; padding:16px; color:var(--accent-dim);
-    line-height:1.8; display:none; margin-bottom:22px;
+  /* CHIP SELECTION BUTTONS */
+  .radio-group{display:flex; gap:6px; background:var(--bg-panel2); padding:4px; border-radius:8px; border:1px solid var(--line);}
+  .radio-group button{
+    background:none; border:none; color:var(--ink-dim); padding:6px 12px;
+    font-size:12.5px; font-family:inherit; border-radius:6px; cursor:pointer; font-weight:500;
   }
-  .terminal.active{display:block;}
-  .terminal .done{color:var(--accent);}
-  .terminal .current{color:var(--ink);}
+  .radio-group button.active{background:var(--line); color:var(--accent);}
 
-  .section-title{display:flex; justify-content:space-between; align-items:baseline; margin:32px 0 16px;}
-  .section-title h2{font-size:16px; margin:0;}
-  .section-title .count{color:var(--ink-dim); font-size:12.5px;}
-
-  .clip-grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(210px,1fr)); gap:14px;}
-  .clip-card{background:var(--bg-panel); border:1px solid var(--line); border-radius:12px; overflow:hidden;}
-  .clip-preview{
-    aspect-ratio:9/16; background:linear-gradient(160deg,#1b2013,#0a0c07);
-    display:flex; align-items:center; justify-content:center; color:#3a4030; font-size:12px; position:relative;
-  }
-  .clip-score{
-    position:absolute; top:9px; left:9px; background:rgba(5,6,3,0.9); border:1px solid var(--accent2);
-    color:var(--accent2); font-size:10.5px; font-weight:700; padding:3px 7px; border-radius:6px;
-    font-family:'JetBrains Mono', monospace; text-shadow:0 0 8px rgba(255,61,94,0.5);
-  }
-  .clip-body{padding:11px 13px 13px;}
-  .clip-reason{font-size:11.5px; color:var(--ink-dim); margin:0 0 11px; line-height:1.4; min-height:30px;}
-  .clip-actions{display:flex; gap:7px;}
-  .clip-actions .btn{flex:1; padding:8px 8px; font-size:11.5px;}
-
-  .history-list, .preset-list{display:flex; flex-direction:column; gap:8px;}
-  .history-item, .preset-item{
-    display:flex; justify-content:space-between; align-items:center; padding:13px 15px;
-    background:var(--bg-panel); border:1px solid var(--line); border-radius:10px; cursor:pointer; font-size:13px;
-  }
-  .history-item:hover, .preset-item:hover{border-color:var(--accent-dim);}
-  .h-meta{color:var(--ink-dim); font-size:11.5px;}
-  .empty-state{
-    color:#585d4f; font-size:13px; text-align:center; padding:22px;
-    border:1px dashed var(--line); border-radius:10px;
-  }
-
-  .transcript-box{
-    font-family:'JetBrains Mono', monospace; font-size:12px; background:var(--bg-panel2);
-    border:1px solid var(--line); border-radius:10px; padding:16px; max-height:260px; overflow-y:auto;
-    color:var(--ink-dim); line-height:1.9; display:none;
-  }
-  .transcript-box.active{display:block;}
-  .transcript-box .ts{color:var(--accent2); margin-right:6px;}
-  .transcript-box mark{background:rgba(212,255,43,0.18); color:var(--accent); padding:0 2px; border-radius:3px;}
-
-  .stat-row{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:22px;}
+  /* STATS CARD */
+  .stats-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:14px; margin-bottom:24px;}
   .stat-card{background:var(--bg-panel); border:1px solid var(--line); border-radius:12px; padding:18px;}
-  .stat-card .num{font-size:26px; font-weight:700; color:var(--accent);}
-  .stat-card .lbl{font-size:12px; color:var(--ink-dim); margin-top:4px;}
+  .stat-card .val{font-size:24px; font-weight:700; color:var(--accent); margin-bottom:4px;}
+  .stat-card .lbl{font-size:12px; color:var(--ink-dim);}
 
-  [data-i18n]{transition:opacity .15s;}
+  /* TERMINAL BOX */
+  .log-box{
+    background:#020301; border:1px solid var(--line); border-radius:10px;
+    padding:16px; font-family:'JetBrains Mono', monospace; font-size:12.5px;
+    color:var(--ink-dim); max-height:220px; overflow-y:auto; margin-top:14px;
+    line-height:1.6;
+  }
+  .log-line.error{color:var(--accent2);}
+  .log-line.success{color:var(--accent);}
+
+  /* RESULTS CLIPS GRID */
+  .clips-grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); gap:18px; margin-top:18px;}
+  .clip-card{
+    background:var(--bg-panel2); border:1px solid var(--line); border-radius:10px;
+    overflow:hidden; display:flex; flex-direction:column;
+  }
+  .clip-video{width:100%; aspect-ratio:16/9; background:#000; display:block;}
+  .clip-card.ratio-9-16 .clip-video{aspect-ratio:9/16; max-height:360px;}
+  .clip-meta{padding:14px; flex:1; display:flex; flex-direction:column;}
+  .clip-title{font-size:14px; font-weight:600; margin:0 0 6px; color:var(--accent);}
+  .clip-desc{font-size:12.5px; color:var(--ink-dim); margin:0 0 14px; flex:1; line-height:1.5;}
+  .clip-foot{display:flex; justify-content:space-between; align-items:center;}
+  .clip-time{font-size:11px; font-family:'JetBrains Mono', monospace; color:var(--ink-dim); background:var(--bg-panel); padding:3px 6px; border-radius:4px;}
 </style>
 </head>
 <body>
 
 <div class="layout">
+  <!-- SIDEBAR NAVIGATION -->
   <div class="sidebar">
     <div class="logo">Reelly<span>.</span></div>
-    <div class="nav-item active" data-page="generator" onclick="showPage('generator')">
-      <span class="ic">⚡</span><span data-i18n="nav_generator">Clip Generator</span>
-    </div>
-    <div class="nav-item" data-page="transcript" onclick="showPage('transcript')">
-      <span class="ic">📝</span><span data-i18n="nav_transcript">Transkrip & Ranking</span>
-    </div>
-    <div class="nav-item" data-page="captions" onclick="showPage('captions')">
-      <span class="ic">💬</span><span data-i18n="nav_captions">Gaya Caption</span>
-    </div>
-    <div class="nav-item" data-page="presets" onclick="showPage('presets')">
-      <span class="ic">⚙</span><span data-i18n="nav_presets">Preset</span>
-    </div>
-    <div class="nav-item" data-page="history" onclick="showPage('history')">
-      <span class="ic">🕘</span><span data-i18n="nav_history">Riwayat</span>
-    </div>
+    <div class="nav-item active" data-page="transcript"><span class="ic">🎬</span> Transcript & Ranking</div>
+    <div class="nav-item" data-page="style"><span class="ic">🎨</span> Caption Style</div>
+    <div class="nav-item" data-page="presets"><span class="ic">⚙️</span> Presets</div>
+    <div class="nav-item" data-page="history"><span class="ic">⏳</span> History</div>
+    
     <div class="sidebar-foot">
       <div class="lang-toggle">
-        <button id="btn-id" class="active" onclick="setLang('id')">ID</button>
-        <button id="btn-en" onclick="setLang('en')">EN</button>
+        <button class="active">ID</button>
+        <button>EN</button>
       </div>
     </div>
   </div>
 
+  <!-- MAIN APPS CONTENT -->
   <div class="content">
-
-    <!-- PAGE: GENERATOR -->
-    <div class="page active" id="page-generator">
+    
+    <!-- PAGE 1: TRANSCRIPT & RANKING -->
+    <div id="page-transcript" class="page active">
       <div class="page-head">
-        <h1 data-i18n="gen_title">Clip Generator</h1>
-        <p data-i18n="gen_sub">Tempel link atau upload video. Reelly potong otomatis jadi klip pendek — gratis tanpa batas.</p>
+        <h1>Potong & Ranking Klip Otomatis</h1>
+        <p>Unggah video panjang atau tempel link video untuk mengekstrak bagian paling viral menggunakan kecerdasan buatan (AI).</p>
       </div>
 
-      <div class="stat-row">
-        <div class="stat-card"><div class="num" id="stat-total-clips">0</div><div class="lbl" data-i18n="stat_total">Total klip dibuat</div></div>
-        <div class="stat-card"><div class="num" id="stat-total-runs">0</div><div class="lbl" data-i18n="stat_runs">Total proses dijalankan</div></div>
-        <div class="stat-card"><div class="num">∞</div><div class="lbl" data-i18n="stat_limit">Batas penggunaan</div></div>
+      <div class="stats-grid">
+        <div class="stat-card"><div class="val">0</div><div class="lbl">Total clips generated</div></div>
+        <div class="stat-card"><div class="val">0</div><div class="lbl">Total runs</div></div>
+        <div class="stat-card"><div class="val">∞</div><div class="lbl">Usage limit</div></div>
       </div>
 
       <div class="panel">
+        <h3>Input Video</h3>
         <div class="url-row">
-          <input id="url-input" type="text" data-i18n-placeholder="url_placeholder" placeholder="Tempel link video di sini...">
-          <button class="btn" onclick="startProcessing()" data-i18n="btn_process">⚡ Proses Video</button>
+          <input type="text" id="video-url" placeholder="Paste a video link here... (YouTube, Drive, MP4 URL)">
+          <button class="btn" id="btn-process">⚡ Process Video</button>
         </div>
-        <div class="drop-zone" onclick="document.getElementById('file-input').click()">
-          <input type="file" id="file-input" style="display:none" accept="video/*">
-          <span data-i18n="drop_text">atau seret & lepas file video kamu di sini</span>
+        
+        <div class="drop-zone" id="drop-zone">
+          <input type="file" id="file-input" accept="video/*" style="display:none;">
+          <span id="drop-text">or drag & drop your video file here</span>
         </div>
 
         <div class="options-row">
           <div class="field">
-            <label data-i18n="clip_count_label">Jumlah klip</label>
+            <label>Number of Clips</label>
             <div class="slider-row">
-              <input type="range" id="clip-slider" min="1" max="20" value="10" oninput="updateClipCount(this.value)">
-              <div class="slider-val" id="clip-count-display">10</div>
+              <input type="range" id="num-clips" min="1" max="10" value="1">
+              <span class="mono" id="num-clips-val" style="font-weight:600; color:var(--accent);">1</span>
             </div>
           </div>
+
           <div class="field">
-            <label data-i18n="ratio_label">Rasio ekspor</label>
-            <div class="chip-group" id="ratio-group">
-              <div class="chip active" data-ratio="9:16" onclick="selectRatio(this)">9:16</div>
-              <div class="chip" data-ratio="1:1" onclick="selectRatio(this)">1:1</div>
-              <div class="chip" data-ratio="16:9" onclick="selectRatio(this)">16:9</div>
+            <label>Export Ratio</label>
+            <div class="radio-group" id="ratio-group">
+              <button class="active" data-val="9:16">9:16</button>
+              <button data-val="1:1">1:1</button>
+              <button data-val="16:9">16:9</button>
             </div>
           </div>
+
           <div class="field">
-            <label data-i18n="silence_label">Opsi tambahan</label>
-            <div class="chip-group">
-              <div class="chip active" id="chip-silence" onclick="this.classList.toggle('active')" data-i18n="silence_chip">Potong jeda hening</div>
+            <label>Extra Options</label>
+            <div class="radio-group">
+              <button class="active">Trim silence</button>
             </div>
           </div>
+
           <div class="field">
-            <label data-i18n="cap_style_label">Gaya caption</label>
-            <div class="chip-group" id="caption-style-group">
-              <div class="chip active" data-style="karaoke_bold" onclick="selectCaptionStyle(this)" data-i18n="cap_style_karaoke">Karaoke Bold</div>
-              <div class="chip" data-style="minimal_bottom" onclick="selectCaptionStyle(this)" data-i18n="cap_style_minimal">Minimal</div>
-              <div class="chip" data-style="colorful_pop" onclick="selectCaptionStyle(this)" data-i18n="cap_style_pop">Pop Warna</div>
+            <label>Caption Style</label>
+            <div class="radio-group" id="style-group">
+              <button class="active" data-val="karaoke_bold">Bold Karaoke</button>
+              <button data-val="minimal">Minimal</button>
+              <button data-val="colorful_pop">Colorful Pop</button>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="terminal" id="terminal"><div id="term-lines"></div></div>
+        <!-- CONSOLE LOGGER INTERFACE -->
+        <div class="log-box" id="log-box">
 
-      <div class="section-title">
-        <h2 data-i18n="results_title">Hasil Klip</h2>
-        <div class="count" id="results-count"></div>
-      </div>
-      <div class="clip-grid" id="clip-grid">
-        <div class="empty-state" data-i18n="results_empty">Belum ada klip. Proses video di atas untuk mulai.</div>
-      </div>
-      <div style="margin-top:16px; display:flex; justify-content:flex-end;">
-        <button class="btn secondary small" onclick="alert(currentLang==='id' ? 'Semua klip diunduh sebagai .zip' : 'All clips downloaded as .zip')" data-i18n="download_all">⬇ Unduh Semua (.zip)</button>
-      </div>
-    </div>
-
-    <!-- PAGE: TRANSCRIPT & RANKING -->
-    <div class="page" id="page-transcript">
-      <div class="page-head">
-        <h1 data-i18n="tr_title">Transkrip & Ranking Hook</h1>
-        <p data-i18n="tr_sub">Lihat transkrip video dan bagaimana AI menilai tiap bagian untuk potensi klip viral.</p>
-      </div>
-
-      <div class="panel">
-        <h3 data-i18n="tr_search_label">Cari topik dalam transkrip</h3>
-        <div class="url-row">
-          <input id="topic-search" type="text" data-i18n-placeholder="tr_search_placeholder" placeholder="Misal: bagian tentang harga...">
-          <button class="btn" onclick="searchTopic()" data-i18n="tr_search_btn">Cari</button>
-        </div>
-      </div>
-
-      <div class="panel">
-        <h3 data-i18n="tr_transcript_label">Transkrip</h3>
-        <div class="transcript-box active" id="transcript-box"></div>
-      </div>
-
-      <div class="section-title">
-        <h2 data-i18n="tr_ranked_title">Segmen Teratas</h2>
-        <div class="count" data-i18n="tr_ranked_note">diurutkan berdasarkan skor virality</div>
-      </div>
-      <div class="clip-grid" id="ranked-grid"></div>
-    </div>
-
-    <!-- PAGE: CAPTIONS -->
-    <div class="page" id="page-captions">
-      <div class="page-head">
-        <h1 data-i18n="cap_title">Gaya Caption</h1>
-        <p data-i18n="cap_sub">Pilih gaya teks otomatis yang dibakar ke dalam video.</p>
-      </div>
-      <div class="clip-grid" id="caption-styles"></div>
-    </div>
-
-    <!-- PAGE: PRESETS -->
-    <div class="page" id="page-presets">
-      <div class="page-head">
-        <h1 data-i18n="pre_title">Preset Tersimpan</h1>
-        <p data-i18n="pre_sub">Simpan kombinasi rasio, caption, dan opsi biar nggak perlu atur ulang tiap kali.</p>
-      </div>
-      <div class="panel">
-        <div class="url-row">
-          <input id="preset-name" type="text" data-i18n-placeholder="pre_name_placeholder" placeholder="Nama preset, misal: Podcast Vertikal">
-          <button class="btn" onclick="savePreset()" data-i18n="pre_save_btn">Simpan Preset</button>
-        </div>
-      </div>
-      <div class="preset-list" id="preset-list"></div>
-    </div>
-
-    <!-- PAGE: HISTORY -->
-    <div class="page" id="page-history">
-      <div class="page-head">
-        <h1 data-i18n="hist_title">Riwayat Klip</h1>
-        <p data-i18n="hist_sub">Tersimpan otomatis di browser ini.</p>
-      </div>
-      <div class="history-list" id="history-list"></div>
-    </div>
-
-  </div>
-</div>
-
-<script>
-const i18n = {
-  id: {
-    nav_generator:"Clip Generator", nav_transcript:"Transkrip & Ranking", nav_captions:"Gaya Caption", nav_presets:"Preset", nav_history:"Riwayat",
-    gen_title:"Clip Generator", gen_sub:"Tempel link atau upload video. Reelly potong otomatis jadi klip pendek — gratis tanpa batas.",
-    stat_total:"Total klip dibuat", stat_runs:"Total proses dijalankan", stat_limit:"Batas penggunaan",
-    url_placeholder:"Tempel link video di sini...", btn_process:"⚡ Proses Video", drop_text:"atau seret & lepas file video kamu di sini",
-    clip_count_label:"Jumlah klip", ratio_label:"Rasio ekspor", silence_label:"Opsi tambahan", silence_chip:"Potong jeda hening",
-    cap_style_label:"Gaya caption", cap_style_karaoke:"Karaoke Bold", cap_style_minimal:"Minimal", cap_style_pop:"Pop Warna",
-    results_title:"Hasil Klip", results_empty:"Belum ada klip. Proses video di atas untuk mulai.", download_all:"⬇ Unduh Semua (.zip)",
-    tr_title:"Transkrip & Ranking Hook", tr_sub:"Lihat transkrip video dan bagaimana AI menilai tiap bagian untuk potensi klip viral.",
-    tr_search_label:"Cari topik dalam transkrip", tr_search_placeholder:"Misal: bagian tentang harga...", tr_search_btn:"Cari",
-    tr_transcript_label:"Transkrip", tr_ranked_title:"Segmen Teratas", tr_ranked_note:"diurutkan berdasarkan skor virality",
-    cap_title:"Gaya Caption", cap_sub:"Pilih gaya teks otomatis yang dibakar ke dalam video.",
-    pre_title:"Preset Tersimpan", pre_sub:"Simpan kombinasi rasio, caption, dan opsi biar nggak perlu atur ulang tiap kali.",
-    pre_name_placeholder:"Nama preset, misal: Podcast Vertikal", pre_save_btn:"Simpan Preset",
-    hist_title:"Riwayat Klip", hist_sub:"Tersimpan otomatis di browser ini.",
-    term_steps:["Mengunduh video","Mentranskrip audio","Menganalisis momen menarik","Melacak wajah & memotong","Menambahkan teks otomatis","Merender klip"],
-    reason:["Hook kuat di 3 detik pertama","Momen emosional yang menonjol","Poin penjelasan yang jelas dan padat","Bagian dengan energi tinggi","Kesimpulan yang mudah diingat"],
-    download:"Unduh MP4", quick:"Ekspor Cepat", clips_generated:"klip dibuat",
-    caption_names:["Karaoke Bold","Minimal Bawah","Pop Warna-warni","Subtitle Klasik"],
-    caption_desc:["Kata disorot satu per satu, gaya energik","Teks putih tipis di bawah layar","Warna cerah per kata kunci, gaya iklan","Teks standar rapi ala film"],
-    preset_empty:"Belum ada preset tersimpan.", history_empty:"Riwayat kamu akan muncul di sini setelah proses pertama selesai.",
-    transcript_placeholder:"Belum ada transkrip. Proses video dulu di halaman Clip Generator.",
-    preset_saved:"disimpan"
-  },
-  en: {
-    nav_generator:"Clip Generator", nav_transcript:"Transcript & Ranking", nav_captions:"Caption Style", nav_presets:"Presets", nav_history:"History",
-    gen_title:"Clip Generator", gen_sub:"Paste a link or upload a video. Reelly cuts it into short clips automatically — free, no limits.",
-    stat_total:"Total clips generated", stat_runs:"Total runs", stat_limit:"Usage limit",
-    url_placeholder:"Paste a video link here...", btn_process:"⚡ Process Video", drop_text:"or drag & drop your video file here",
-    clip_count_label:"Number of clips", ratio_label:"Export ratio", silence_label:"Extra options", silence_chip:"Trim silence",
-    cap_style_label:"Caption style", cap_style_karaoke:"Bold Karaoke", cap_style_minimal:"Minimal", cap_style_pop:"Colorful Pop",
-    results_title:"Clip Results", results_empty:"No clips yet. Process a video above to get started.", download_all:"⬇ Download All (.zip)",
-    tr_title:"Transcript & Hook Ranking", tr_sub:"See the video transcript and how the AI scores each part for clip potential.",
-    tr_search_label:"Search a topic in the transcript", tr_search_placeholder:"e.g. the part about pricing...", tr_search_btn:"Search",
-    tr_transcript_label:"Transcript", tr_ranked_title:"Top Segments", tr_ranked_note:"sorted by virality score",
-    cap_title:"Caption Style", cap_sub:"Choose the auto-caption style burned into your video.",
-    pre_title:"Saved Presets", pre_sub:"Save a combination of ratio, captions, and options so you don't have to set it up every time.",
-    pre_name_placeholder:"Preset name, e.g. Vertical Podcast", pre_save_btn:"Save Preset",
-    hist_title:"Clip History", hist_sub:"Saved automatically in this browser.",
-    term_steps:["Downloading video","Transcribing audio","Analyzing engaging moments","Tracking faces & cropping","Adding auto captions","Rendering clips"],
-    reason:["Strong hook in the first 3 seconds","Standout emotional moment","Clear, concise explanation point","High-energy segment","Memorable closing line"],
-    download:"Download MP4", quick:"Quick Export", clips_generated:"clips generated",
-    caption_names:["Bold Karaoke","Minimal Bottom","Colorful Pop","Classic Subtitle"],
-    caption_desc:["Words highlighted one by one, energetic style","Thin white text at the bottom","Bright colors per keyword, ad-style","Clean standard movie-style text"],
-    preset_empty:"No presets saved yet.", history_empty:"Your history will show up here after your first run.",
-    transcript_placeholder:"No transcript yet. Process a video first on the Clip Generator page.",
-    preset_saved:"saved"
-  }
-};
-let currentLang = 'id';
-let currentRatio = '9:16';
-let currentCaptionStyle = 'karaoke_bold';
-
-function selectCaptionStyle(el){
-  document.querySelectorAll('#caption-style-group .chip').forEach(c=>c.classList.remove('active'));
-  el.classList.add('active');
-  currentCaptionStyle = el.dataset.style;
-}
-
-function showPage(name){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
-  document.getElementById('page-'+name).classList.add('active');
-  document.querySelector(`.nav-item[data-page="${name}"]`).classList.add('active');
-  if(name==='presets') renderPresets();
-  if(name==='history') renderHistory();
-  if(name==='captions') renderCaptionStyles();
-  if(name==='transcript') renderTranscriptPage();
-}
-
-function setLang(lang){
-  currentLang = lang;
-  document.getElementById('btn-id').classList.toggle('active', lang==='id');
-  document.getElementById('btn-en').classList.toggle('active', lang==='en');
-  document.querySelectorAll('[data-i18n]').forEach(el=>{
-    const key = el.getAttribute('data-i18n');
-    if(i18n[lang][key]) el.textContent = i18n[lang][key];
-  });
-  document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{
-    const key = el.getAttribute('data-i18n-placeholder');
-    if(i18n[lang][key]) el.placeholder = i18n[lang][key];
-  });
-  renderHistory(); renderPresets(); renderCaptionStyles();
-}
-
-function updateClipCount(val){ document.getElementById('clip-count-display').textContent = val; }
-function selectRatio(el){
-  document.querySelectorAll('#ratio-group .chip').forEach(c=>c.classList.remove('active'));
-  el.classList.add('active');
-  currentRatio = el.dataset.ratio;
-}
-
-async function startProcessing(){
-  const urlVal = document.getElementById('url-input').value.trim();
-  const fileInput = document.getElementById('file-input');
-  const clipCount = parseInt(document.getElementById('clip-slider').value, 10);
-  const terminal = document.getElementById('terminal');
-  const termLines = document.getElementById('term-lines');
-  terminal.classList.add('active');
-  termLines.innerHTML = '';
-
-  if(!fileInput.files[0]){
-    const msg = currentLang==='id'
-      ? 'Upload file video dulu — pemrosesan link belum tersedia di versi ini.'
-      : 'Upload a video file first — link processing isn\'t available in this version yet.';
-    termLines.innerHTML = `<div style="color:var(--accent2)">${msg}</div>`;
-    return;
-  }
-
-  const steps = i18n[currentLang].term_steps;
-  const logLine = (text, cls) => {
-    const line = document.createElement('div');
-    line.textContent = text;
-    line.className = cls;
-    termLines.appendChild(line);
-    return line;
-  };
-  logLine('> ' + steps[0] + '...', 'current');
-
-  try {
-    const formData = new FormData();
-    formData.append('video', fileInput.files[0]);
-    formData.append('numClips', clipCount);
-    formData.append('ratio', currentRatio);
-    formData.append('captionStyle', currentCaptionStyle);
-
-    const response = await fetch('http://localhost:3001/api/process', {
-      method: 'POST',
-      body: formData
-    });
-
-    if(!response.ok){
-      const err = await response.json().catch(()=>({error:'Unknown error'}));
-      throw new Error(err.error || 'Request failed');
-    }
-
-    steps.forEach((s,i)=> i>0 && logLine('✓ ' + s, 'done'));
-    const data = await response.json();
-
-    const clips = data.clips.map(c => ({
-      rank: c.rank, score: c.score, reason: c.reason,
-      start: c.start, end: c.end, downloadUrl: c.downloadUrl
-    }));
-
-    renderClips(clips);
-    saveToHistory(clips.length, urlVal || fileInput.files[0].name);
-    bumpStats(clips.length);
-    window._lastTranscriptSource = urlVal || fileInput.files[0].name;
-    renderRankedSegments(clips);
-
-  } catch (err) {
-    logLine('✗ ' + (currentLang==='id' ? 'Gagal: ' : 'Failed: ') + err.message, 'current');
-    logLine(currentLang==='id'
-      ? 'Pastikan server backend (node server.js) sedang berjalan di localhost:3001.'
-      : 'Make sure the backend server (node server.js) is running on localhost:3001.', 'current');
-  }
-}
-
-function generateClipData(count){
-  const reasons = i18n[currentLang].reason;
-  const clips = [];
-  for(let i=0;i<count;i++){
-    clips.push({
-      rank: i+1,
-      score: Math.floor(Math.random()*30)+70,
-      reason: reasons[i % reasons.length],
-      start: (i*23).toFixed(1),
-      end: (i*23+18).toFixed(1)
-    });
-  }
-  return clips.sort((a,b)=>b.score-a.score).map((c,idx)=>({...c, rank: idx+1}));
-}
-
-function renderClips(clips){
-  const grid = document.getElementById('clip-grid');
-  grid.innerHTML = '';
-  clips.forEach(c=>{
-    const card = document.createElement('div');
-    card.className = 'clip-card';
-    const downloadBtn = c.downloadUrl
-      ? `<a class="btn" style="text-decoration:none; text-align:center;" href="http://localhost:3001${c.downloadUrl}" download>${i18n[currentLang].download}</a>`
-      : `<button class="btn">${i18n[currentLang].download}</button>`;
-    card.innerHTML = `
-      <div class="clip-preview">
-        <span class="clip-score">#${c.rank} · ${c.score}%</span>
-        ${currentRatio}
-      </div>
-      <div class="clip-body">
-        <p class="clip-reason">${c.reason}</p>
-        <div class="clip-actions">
-          ${downloadBtn}
-          <button class="btn secondary">${i18n[currentLang].quick}</button>
-        </div>
-      </div>
-    `;
-    grid.appendChild(card);
-  });
-  document.getElementById('results-count').textContent = clips.length + ' ' + i18n[currentLang].clips_generated;
-}
-
-function renderRankedSegments(clips){
-  const grid = document.getElementById('ranked-grid');
-  if(!grid) return;
-  grid.innerHTML = '';
-  clips.forEach(c=>{
-    const card = document.createElement('div');
-    card.className = 'clip-card';
-    card.innerHTML = `
-      <div class="clip-preview">
-        <span class="clip-score">#${c.rank} · ${c.score}%</span>
-        ${c.start}s–${c.end}s
-      </div>
-      <div class="clip-body">
-        <p class="clip-reason">${c.reason}</p>
-      </div>
-    `;
-    grid.appendChild(card);
-  });
-}
-
-function renderTranscriptPage(){
-  if(!window._lastClips){
-    document.getElementById('transcript-box').textContent = i18n[currentLang].transcript_placeholder;
-    return;
-  }
-}
-
-function buildFakeTranscript(){
-  const box = document.getElementById('transcript-box');
-  const lines = [];
-  for(let i=0;i<14;i++){
-    const t = (i*7.4).toFixed(1);
-    lines.push(`<span class="ts">[${t}s]</span> ${currentLang==='id' ? 'contoh baris transkrip ke-' : 'sample transcript line '}${i+1}...`);
-  }
-  box.innerHTML = lines.join('<br>');
-  window._lastClips = true;
-}
-
-function searchTopic(){
-  const q = document.getElementById('topic-search').value.trim().toLowerCase();
-  const box = document.getElementById('transcript-box');
-  if(!q){ buildFakeTranscript(); return; }
-  const lines = box.innerHTML.split('<br>');
-  box.innerHTML = lines.map(l => {
-    const plain = l.replace(/<[^>]+>/g,'');
-    if(plain.toLowerCase().includes(q)){
-      return l.replace(new RegExp(`(${q})`,'i'), '<mark>$1</mark>');
-    }
-    return l;
-  }).join('<br>');
-}
-
-function renderCaptionStyles(){
-  const grid = document.getElementById('caption-styles');
-  const names = i18n[currentLang].caption_names;
-  const descs = i18n[currentLang].caption_desc;
-  grid.innerHTML = '';
-  names.forEach((name,i)=>{
-    const card = document.createElement('div');
-    card.className = 'clip-card';
-    card.innerHTML = `
-      <div class="clip-preview" style="font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--ink-dim);">${name}</div>
-      <div class="clip-body">
-        <p class="clip-reason">${descs[i]}</p>
-        <div class="clip-actions"><button class="btn secondary">${currentLang==='id' ? 'Pilih' : 'Select'}</button></div>
-      </div>
-    `;
-    grid.appendChild(card);
-  });
-}
-
-function savePreset(){
-  const nameInput = document.getElementById('preset-name');
-  const name = nameInput.value.trim();
-  if(!name) return;
-  const key = 'reelly_presets';
-  let presets = JSON.parse(localStorage.getItem(key) || '[]');
-  presets.unshift({ name, ratio: currentRatio, date: new Date().toLocaleDateString(currentLang==='id'?'id-ID':'en-US') });
-  localStorage.setItem(key, JSON.stringify(presets));
-  nameInput.value = '';
-  renderPresets();
-}
-
-function renderPresets(){
-  const list = document.getElementById('preset-list');
-  if(!list) return;
-  const presets = JSON.parse(localStorage.getItem('reelly_presets') || '[]');
-  if(presets.length === 0){
-    list.innerHTML = `<div class="empty-state">${i18n[currentLang].preset_empty}</div>`;
-    return;
-  }
-  list.innerHTML = '';
-  presets.forEach(p=>{
-    const row = document.createElement('div');
-    row.className = 'preset-item';
-    row.innerHTML = `<div>${p.name}</div><div class="h-meta">${p.ratio} · ${p.date}</div>`;
-    list.appendChild(row);
-  });
-}
-
-function bumpStats(count){
-  const totalEl = document.getElementById('stat-total-clips');
-  const runsEl = document.getElementById('stat-total-runs');
-  const total = parseInt(localStorage.getItem('reelly_total_clips') || '0', 10) + count;
-  const runs = parseInt(localStorage.getItem('reelly_total_runs') || '0', 10) + 1;
-  localStorage.setItem('reelly_total_clips', total);
-  localStorage.setItem('reelly_total_runs', runs);
-  totalEl.textContent = total;
-  runsEl.textContent = runs;
-}
-
-function loadStats(){
-  document.getElementById('stat-total-clips').textContent = localStorage.getItem('reelly_total_clips') || '0';
-  document.getElementById('stat-total-runs').textContent = localStorage.getItem('reelly_total_runs') || '0';
-}
-
-function saveToHistory(count, sourceLabel){
-  const key = 'reelly_history';
-  let history = JSON.parse(localStorage.getItem(key) || '[]');
-  history.unshift({
-    id: Date.now(),
-    source: sourceLabel || (currentLang==='id' ? 'File yang diunggah' : 'Uploaded file'),
-    count: count,
-    date: new Date().toLocaleString(currentLang==='id' ? 'id-ID' : 'en-US')
-  });
-  history = history.slice(0, 20);
-  localStorage.setItem(key, JSON.stringify(history));
-}
-
-function renderHistory(){
-  const list = document.getElementById('history-list');
-  if(!list) return;
-  const history = JSON.parse(localStorage.getItem('reelly_history') || '[]');
-  if(history.length === 0){
-    list.innerHTML = `<div class="empty-state">${i18n[currentLang].history_empty}</div>`;
-    return;
-  }
-  list.innerHTML = '';
-  history.forEach(item=>{
-    const row = document.createElement('div');
-    row.className = 'history-item';
-    row.onclick = ()=>{ showPage('generator'); const clips = generateClipData(item.count); renderClips(clips); };
-    row.innerHTML = `<div>${item.source}</div><div class="h-meta">${item.count} ${i18n[currentLang].clips_generated} · ${item.date}</div>`;
-    list.appendChild(row);
-  });
-}
-
-loadStats();
-renderHistory();
-</script>
-
-</body>
-</html>
